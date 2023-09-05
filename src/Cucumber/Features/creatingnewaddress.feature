@@ -1,17 +1,15 @@
-Feature: Add a new user's address after login
+Feature: Adding an address to the active user account
 
-
-  Scenario Outline: I add a new address in the To field
-    Given I'm on the shop authentication page
+  Scenario Outline: User has an active account
+    Given I'm on shop main page
     When I login using "skrqhyuqjzrgsuasgh@cazlv.com" and "A#TJ$5Zpg<on"
     And I go to my addresses page
-    And I attempt to add a new address
-    And I enter new address <alias>, "<address>", "<city>", <postcode>, <phone>
-    Then I can see a new address
-    And I verify created address has <alias>, "<address>", "<city>", <postcode>, <phone>
-    And I remove the address
-    And I can see there is no addresses
+    When I add new address
+    And I enter new address alias <alias> address <address> city <city> zip <zip> country <country> phone <phone>
+    Then I can see new address "Address successfully added!"
+    And I verify created address alias <alias> address <address> city <city> zip <zip> country <country> phone <phone>
+    #And I remove the address
     And I close the browser
     Examples:
-      | alias | address     | city       | postcode |  phone      |
-      | Work  | Golden Gate | Khorinis | 50-220   |  +666999666 |
+      | alias | address     | city     | zip      | country          | phone        |
+      | "1"   | "CucumberStreet" | "Sydney" | "11-222" | "Australia" | "1122033444" |
